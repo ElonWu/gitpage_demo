@@ -1,0 +1,13 @@
+.navbar {
+  & > ul {
+    float: right;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+
+    & > li {
+      padding: 4px 10px;
+      color: #444;
+    }
+  }
+}

@@ -1,68 +1,89 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+#### 一、部署静态项目
 
-## Available Scripts
+1. 将本地项目 push 到 github
+2. 进入 github 当前项目的远程仓库
+3. 点击 settings 向下滚动到 GitHub Pages 配置； 选定 source 为 master-branch
 
-In the project directory, you can run:
+```
+ // TODO 添加界面截图
+```
 
-### `npm start`
+![image](https://note.youdao.com/favicon.ico)
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+4. 等待页面刷新成功， 向下滚动到 GitHub Pages 配置； 项目已经成功部署，并显示对应的访问地址。
+5. 可在项目仓库点击 enviroment 查看部署信息。
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
+#### 二、部署需要构建的项目
 
-### `npm test`
+1. 在 package.json 下新增字段（你的 gitub 地址和项目远程仓库名）
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+```
+    "homepage": "https://xxx.github.io/proflie-page/"
+```
 
-### `npm run build`
+2. 在 package.json 中 scripts 字段下增加如下配置
 
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
+```
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
+```
 
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
+3. 在全局或者当前项目下安装 gh-pages（两者任选其一）
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+```
+    // 全局安装依赖
+    npm i -g gh-pages
 
-### `npm run eject`
+    // 当前项目中安装依赖
+    npm i --save-dev gh-pages
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+```
+ // TODO 添加 package.json 截图
+```
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+![image](https://note.youdao.com/favicon.ico)
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+4. 提交代码后，执行部署命令
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+```
+    npm run deploy
+```
 
-## Learn More
+5. 查看 github 远程仓库, 发现 gh-pages 帮你自动创建了一个分支； 仅包括构建好的代码
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+```
+ // TODO 添加 github 界面截图
+```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+![image](https://note.youdao.com/favicon.ico)
 
-### Code Splitting
+6. 点击当前仓库的 settings 向下滚动到 GitHub Pages 配置； 选定 source 为 gh-pages 分支
+7.
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
+```
+ // TODO 添加选择截图
+```
 
-### Analyzing the Bundle Size
+![image](https://note.youdao.com/favicon.ico)
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
+7. 等待页面刷新成功， 向下滚动到 GitHub Pages 配置； 项目已经成功部署。
 
-### Making a Progressive Web App
+#### 三、将项目绑定到自定义的域名
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
+1. 打开 github 远程仓库； 在上一个项目的根目录，新增 CNAME 文件， 内容为你需要绑定的域名地址；保存。++==注意：不需要增加 http 或 https 协议名， 直接太难写域名即可； 如 elonwu.xyz==++
+2. 点击当前仓库的 settings 向下滚动到 GitHub Pages 配置；Custom domain 栏中输入你需要绑定的域名地址； 如果域名支持的话，最好勾选 Enforce HTTPS
+3. 打开你的域名管理网页， 以下以 [GoDaddy 为例](https://dcc.godaddy.com/manage/)；在 DNS 管理下新增 gihub 的文件服务器 ip
 
-### Advanced Configuration
+| 类型 | 名称 | 值              | TTL |
+| ---- | ---- | --------------- | --- |
+| A    | @    | 185.199.108.153 | 1h  |
+| A    | @    | 185.199.109.153 | 1h  |
+| A    | @    | 185.199.110.153 | 1h  |
+| A    | @    | 185.199.111.153 | 1h  |
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
+4. 稍等之后，直接访问你的域名， 即可看到项目已经被构建并且部署好，在你的域名之下。
 
-### Deployment
+##### 简书地址
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+##### 掘金地址

@@ -5,7 +5,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <header className="App-header">谭春霞， 爱你哟</header>
+        <header className="App-header">测试 修改 icon</header>
       </div>
     );
   }

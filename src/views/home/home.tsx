@@ -17,12 +17,25 @@ export class Home extends React.Component {
       >
         <FrostedGlass />
 
-        <Container>
+        <Container
+          innerStyle={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center"
+          }}
+        >
           {/* <div className="content">
             <Navbar />
           </div> */}
 
-          <h3>Elon's World</h3>
+          <h3
+            style={{
+              fontSize: 48,
+              color: "#fdfdfd"
+            }}
+          >
+            Elon's World
+          </h3>
         </Container>
       </div>
     );

@@ -30,13 +30,48 @@ module.exports = {
   entry: "./src/app.tsx",
   output: {
     filename: "[name].[hash].js",
+    chunkFilename: "[name].chunkhash.js",
     path: PUBLIC_URL
   },
+  // 分离部分依赖包， 通过 cdn 访问
+  // externals: {
+  //   react: "react",
+  //   reactDom: "react-dom",
+  //   reactRouterDom: "react-router-dom",
+  //   antd: "antd",
+  //   lodash: {
+  //     commonjs: "lodash",
+  //     amd: "lodash",
+  //     root: "_" // indicates global variable
+  //   }
+  // },
+
+  // 代码分割
+  optimization: {
+    splitChunks: {
+      cacheGroups: {
+        vendor: {
+          chunks: "initial",
+          name: "vendor",
+          test: "vendor",
+          enforce: true
+        }
+      }
+    },
+    runtimeChunk: true
+  },
+
   devtool: "inline-source-map",
   devServer: {
-    // host: "localhost:3200",
-    inline: false,
-    contentBase: "./build"
+    host: "localhost",
+    port: "9090",
+    inline: true,
+    contentBase: "./build",
+    watchContentBase: true,
+    hot: true,
+    open: "chrome",
+    openPage: ""
+    // proxy: {},
   },
   module: {
     rules: [
@@ -83,7 +118,8 @@ module.exports = {
       styles: srcPath(["src", "styles"]),
       routes: srcPath(["src", "routes"]),
       api: srcPath(["src", "api"]),
-      models: srcPath(["src", "models"])
+      models: srcPath(["src", "models"]),
+      assets: srcPath(["src", "assets"])
     }
   },
   plugins: [

@@ -1,0 +1,15 @@
+.header {
+  height: 5rem;
+  background: #ededed;
+  border-bottom: 1px solid #dcdcdc;
+  position: relative;
+
+  h3 {
+    position: absolute;
+    font-size: 1.4rem;
+  }
+
+  .avatar {
+    position: absolute;
+  }
+}

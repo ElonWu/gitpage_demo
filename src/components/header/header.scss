@@ -1,6 +1,8 @@
+@import "styles/variables.scss";
+
 .header {
   height: 8rem;
-  background: #ededed;
+  background: $color-bg;
   border-bottom: 1px solid #dcdcdc;
 
   display: flex;
@@ -12,8 +14,10 @@
   .avatar {
     width: 5rem;
     height: 5rem;
-    border-radius: 8px;
-    border: 2px solid #dcdcdc;
+    img {
+      border-radius: 8px;
+      border: 2px solid #dcdcdc;
+    }
   }
 
   .info {
@@ -25,7 +29,7 @@
     justify-content: space-between;
     h3 {
       font-size: 1.6rem;
-      color: #444;
+      color: #fff;
     }
     .info-detail {
       display: flex;
@@ -34,7 +38,7 @@
 
       li {
         font-size: 1rem;
-        color: #1d1e68;
+        color: #ededed;
         padding-left: 0.4rem;
       }
     }

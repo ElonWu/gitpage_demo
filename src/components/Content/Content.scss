@@ -2,16 +2,16 @@
   flex: 1;
   overflow-x: hidden;
   overflow-y: scroll;
-  background: #e3e3e3;
+  background: #f5f5f5;
 
   section {
     margin-bottom: 1rem;
-    background: #fff;
 
     h4 {
       font-size: 1.4rem;
       padding: 1rem;
       border-bottom: 1px solid #dcdcdc;
+      background: #fff;
     }
   }
 }

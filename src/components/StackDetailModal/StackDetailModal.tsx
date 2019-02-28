@@ -16,16 +16,12 @@ export class StackDetailModal extends React.Component<Props> {
         title={title}
         onOk={onClose}
         onCancel={onClose}
-        okText=""
-        cancelText=""
+        okText="了解"
+        cancelText="关闭"
         className="stack-detail-modal"
       >
         <h3>{title}</h3>
         <p>{desc}</p>
-
-        <i className="close" onClick={onClose}>
-          close
-        </i>
       </Modal>
     );
   }

@@ -14,6 +14,9 @@ const CopyPlugin = require("copy-webpack-plugin");
 // const ExtractTextPlugin = require("extract-text-webpack-plugin");
 // const AutoPrefixer = require("autoprefixer");
 
+// css 压缩
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+
 /** 打包分析 */
 const BundleAnalyzerPlugin = require("webpack-bundle-analyzer")
   .BundleAnalyzerPlugin;
@@ -32,7 +35,7 @@ const PUBLIC_URL = srcPath(["build"]);
 // env 可以通过命令行，如： --env.NODE_ENV=production 的方式设置
 // args 是命令行中 --mode --hot 等值的汇总
 module.exports = (env, args) => {
-  const DEV = args === "development";
+  const DEV = args !== "production";
 
   return {
     // context: srcPath(["src"]),
@@ -103,12 +106,20 @@ module.exports = (env, args) => {
         },
         {
           test: /\.scss$/,
-          use: ["style-loader", "css-loader", "sass-loader"]
+          use: [
+            DEV ? "style-loader" : MiniCssExtractPlugin.loader,
+            "css-loader",
+            "sass-loader"
+          ]
         },
         {
           test: /\.less$/,
           exclude: /node_modules/,
-          use: ["style-loader", "css-loader", "less-loader"]
+          use: [
+            DEV ? "style-loader" : MiniCssExtractPlugin.loader,
+            "css-loader",
+            "less-loader"
+          ]
         },
         {
           test: /\.(jpg|png|woff|woff2|eot|ttf|svg|ico)$/,
@@ -140,7 +151,13 @@ module.exports = (env, args) => {
         filename: "index.html",
         PUBLIC_URL
       }),
-      // new ExtractTextPlugin(),
+
+      new MiniCssExtractPlugin({
+        // Options similar to the same options in webpackOptions.output
+        // both options are optional
+        filename: "[name].css",
+        chunkFilename: "[id].css"
+      }),
 
       // new ManifestPlugin(),
       new CopyPlugin([

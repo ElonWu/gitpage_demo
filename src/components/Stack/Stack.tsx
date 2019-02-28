@@ -1,6 +1,6 @@
 import * as React from "react";
 import "./Stack.scss";
-import { Icon } from "antd";
+import { Icon, Button } from "antd";
 import { IStack, Stacks } from "models/stack";
 import { StackDetailModal } from "components/StackDetailModal/StackDetailModal";
 
@@ -55,15 +55,13 @@ export class Stack extends React.Component<Props, State> {
     return (
       <div className="show-more-btn" onClick={this.toggle}>
         {showAll ? (
-          <span>
-            更多
-            <Icon type={"down"} />
-          </span>
+          <Button shape="circle" icon="up">
+            {/* 收起 */}
+          </Button>
         ) : (
-          <span>
-            收起
-            <Icon type={"up"} />
-          </span>
+          <Button shape="circle" icon="down">
+            {/* 更多 */}
+          </Button>
         )}
       </div>
     );

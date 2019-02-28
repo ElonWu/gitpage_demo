@@ -14,6 +14,10 @@ const CopyPlugin = require("copy-webpack-plugin");
 // const ExtractTextPlugin = require("extract-text-webpack-plugin");
 // const AutoPrefixer = require("autoprefixer");
 
+/** 打包分析 */
+const BundleAnalyzerPlugin = require("webpack-bundle-analyzer")
+  .BundleAnalyzerPlugin;
+
 // 根据当前路径返回融合路径
 function srcPath(subDirs) {
   return path.resolve(__dirname, ...subDirs);
@@ -25,126 +29,136 @@ const PUBLIC_URL = srcPath(["build"]);
 //   use: ["style-loader", "css-loader", "sass-loader"]
 // };
 
-module.exports = {
-  // context: srcPath(["src"]),
-  entry: "./src/app.tsx",
-  output: {
-    filename: "[name].[hash].js",
-    chunkFilename: "[name].chunkhash.js",
-    path: PUBLIC_URL
-  },
-  // 分离部分依赖包， 通过 cdn 访问
-  // externals: {
-  //   react: "react",
-  //   reactDom: "react-dom",
-  //   reactRouterDom: "react-router-dom",
-  //   antd: "antd",
-  //   lodash: {
-  //     commonjs: "lodash",
-  //     amd: "lodash",
-  //     root: "_" // indicates global variable
-  //   }
-  // },
+// env 可以通过命令行，如： --env.NODE_ENV=production 的方式设置
+// args 是命令行中 --mode --hot 等值的汇总
+module.exports = (env, args) => {
+  const DEV = args === "development";
 
-  // 代码分割
-  optimization: {
-    splitChunks: {
-      cacheGroups: {
-        vendor: {
-          chunks: "initial",
-          name: "vendor",
-          test: "vendor",
-          enforce: true
+  return {
+    // context: srcPath(["src"]),
+    entry: "./src/app.tsx",
+    output: {
+      filename: "[name].[hash].js",
+      chunkFilename: "[name].chunkhash.js",
+      path: PUBLIC_URL
+    },
+    // 打包时使用分离部分依赖包， 通过 cdn 访问
+    // externals: DEV
+    //   ? []
+    //   : [
+    //       "react",
+    //       "react-dom",
+    //       "react-router-dom",
+    //       "antd",
+    //       {
+    //         lodash: {
+    //           commonjs: "lodash",
+    //           amd: "lodash",
+    //           root: "_" // indicates global variable
+    //         }
+    //       }
+    //     ],
+
+    // 代码分割
+    optimization: {
+      splitChunks: {
+        cacheGroups: {
+          vendor: {
+            test: /[\\/]node_modules[\\/]/,
+            name: "vendors",
+            chunks: "all",
+            enforce: true
+          }
         }
+      },
+      runtimeChunk: true
+    },
+
+    devtool: DEV ? "inline-source-map" : "",
+    devServer: {
+      host: "localhost",
+      port: "9090",
+      inline: true,
+      contentBase: "./build",
+      watchContentBase: true,
+      hot: true,
+      open: "chrome",
+      openPage: ""
+      // proxy: {},
+    },
+    module: {
+      rules: [
+        {
+          test: /\.tsx?$/,
+          loader: "babel-loader"
+        },
+        {
+          test: /\.js$/,
+          use: ["source-map-loader"],
+          enforce: "pre"
+        },
+        {
+          test: /\.css$/,
+          use: ["style-loader", "css-loader"]
+        },
+        {
+          test: /\.scss$/,
+          use: ["style-loader", "css-loader", "sass-loader"]
+        },
+        {
+          test: /\.less$/,
+          exclude: /node_modules/,
+          use: ["style-loader", "css-loader", "less-loader"]
+        },
+        {
+          test: /\.(jpg|png|woff|woff2|eot|ttf|svg|ico)$/,
+          loader: "file-loader"
+        }
+      ]
+    },
+    resolve: {
+      extensions: [".tsx", ".ts", ".js"],
+      alias: {
+        components: srcPath(["src", "components"]),
+        views: srcPath(["src", "views"]),
+        styles: srcPath(["src", "styles"]),
+        routes: srcPath(["src", "routes"]),
+        api: srcPath(["src", "api"]),
+        models: srcPath(["src", "models"]),
+        assets: srcPath(["src", "assets"]),
+        // 解决无法按需加载图标的临时方案
+        "@ant-design/icons/lib/dist$": path.resolve(
+          __dirname,
+          "./src/components/icons.js"
+        )
       }
     },
-    runtimeChunk: true
-  },
+    plugins: [
+      new HtmlWebPackPlugin({
+        hash: true,
+        template: "public/index.html",
+        filename: "index.html",
+        PUBLIC_URL
+      }),
+      // new ExtractTextPlugin(),
 
-  devtool: "inline-source-map",
-  devServer: {
-    host: "localhost",
-    port: "9090",
-    inline: true,
-    contentBase: "./build",
-    watchContentBase: true,
-    hot: true,
-    open: "chrome",
-    openPage: ""
-    // proxy: {},
-  },
-  module: {
-    rules: [
-      {
-        test: /\.tsx?$/,
-        exclude: /node_modules/,
-        use: "ts-loader"
-      },
-      {
-        test: /\.js$/,
-        exclude: /node_modules/,
-        use: {
-          loader: "babel-loader?cacheDirectory"
+      // new ManifestPlugin(),
+      new CopyPlugin([
+        {
+          from: srcPath(["public", "favicon.ico"]),
+          to: PUBLIC_URL
+        },
+        {
+          from: srcPath(["public", "manifest.json"]),
+          to: PUBLIC_URL
+        },
+        {
+          from: srcPath(["public", "CNAME"]),
+          to: PUBLIC_URL
         }
-      },
-      {
-        test: /\.css$/,
-        use: ["style-loader", "css-loader"]
-      },
-      {
-        test: /\.scss$/,
-        use: ["style-loader", "css-loader", "sass-loader"]
-      },
-      // {
-      //   test: /\.scss$/,
-      //   use: ExtractTextPlugin.extract(scssRules)
-      // },
-      {
-        test: /\.less$/,
-        exclude: /node_modules/,
-        use: ["style-loader", "css-loader", "less-loader"]
-      },
-      {
-        test: /\.(png|woff|woff2|eot|ttf|svg|ico)$/,
-        loader: "url-loader?limit=100000"
-      }
-    ]
-  },
-  resolve: {
-    extensions: [".tsx", ".ts", ".js"],
-    alias: {
-      components: srcPath(["src", "components"]),
-      views: srcPath(["src", "views"]),
-      styles: srcPath(["src", "styles"]),
-      routes: srcPath(["src", "routes"]),
-      api: srcPath(["src", "api"]),
-      models: srcPath(["src", "models"]),
-      assets: srcPath(["src", "assets"])
-    }
-  },
-  plugins: [
-    new HtmlWebPackPlugin({
-      hash: true,
-      template: "public/index.html",
-      filename: "index.html",
-      PUBLIC_URL
-    }),
-    // new ExtractTextPlugin(),
+      ]),
 
-    // new ManifestPlugin(),
-    new CopyPlugin([
-      {
-        from: srcPath(["public", "favicon.ico"]),
-        to: PUBLIC_URL
-      },
-      {
-        from: srcPath(["public", "manifest.json"]),
-        to: PUBLIC_URL
-      },
-      {
-        from: srcPath(["public", "CNAME"]),
-        to: PUBLIC_URL
-      }
-    ])
-  ]
+      new BundleAnalyzerPlugin()
+    ]
+  };
 };

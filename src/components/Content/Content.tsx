@@ -1,29 +1,25 @@
 import * as React from "react";
-import { Tabs } from "antd";
-import { Profile } from "components/Profile/Profile";
-import { Works } from "components/Works/Works";
-import { Links } from "components/Links/Links";
 import "./Content.scss";
+import { Stack } from "components/Stack/Stack";
+import { Works } from "components/Works/Works";
+import { Articles } from "components/Articles/Articles";
 
-const TabPane = Tabs.TabPane;
-
-const TABS = [
-  { tab: "profile", key: "profile", component: <Profile /> },
-  { tab: "works", key: "works", component: <Works /> },
-  { tab: "links", key: "links", component: <Links /> }
+const Sections = [
+  { title: "技术栈", key: "stack", component: <Stack /> },
+  { title: "最近项目", key: "recent-work", component: <Works /> },
+  { title: "最近文章", key: "recent-article", component: <Articles /> }
 ];
 
 export class Content extends React.Component {
   render() {
     return (
       <div className="content">
-        <Tabs style={{ width: "100%" }}>
-          {TABS.map(({ tab, key, component }) => (
-            <TabPane tab={tab} key={key}>
-              {component}
-            </TabPane>
-          ))}
-        </Tabs>
+        {Sections.map(({ title, key, component }) => (
+          <section key={key}>
+            <h4>{title}</h4>
+            {component}
+          </section>
+        ))}
       </div>
     );
   }

@@ -1,7 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { Home } from "./views/home/home";
-import "antd/dist/antd.css";
+import { Home } from "views/home/home";
 import "./app.scss";
 
 function App() {

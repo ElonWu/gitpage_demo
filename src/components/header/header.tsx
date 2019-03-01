@@ -3,10 +3,25 @@ import "./Header.scss";
 import avatar from "assets/img/avatar.jpg";
 import { Icon } from "antd";
 
-export class Header extends React.Component {
+interface Props {}
+interface State {
+  cover: boolean;
+}
+export class Header extends React.Component<Props, State> {
+  constructor(props: Props) {
+    super(props);
+    this.state = {
+      cover: true
+    };
+  }
+
   render() {
+    const { cover } = this.state;
     return (
-      <div className="header">
+      <div
+        className={`header ${cover && "cover"}`}
+        onClick={() => this.setState({ cover: false })}
+      >
         <div className="avatar">
           <img src={avatar} alt="" width="100%" />
         </div>

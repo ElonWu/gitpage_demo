@@ -5,8 +5,8 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "start": "webpack-dev-server --mode development --hot  --env.NODE_ENV=development",
-    "build": "webpack --mode production --env.NODE_ENV=production",
+    "start": "webpack-dev-server --mode development --hot",
+    "build": "webpack --mode production",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build"
   },

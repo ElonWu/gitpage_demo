@@ -1,26 +1,7 @@
 import * as React from "react";
 import { Button } from "antd";
-import avatar from "assets/img/avatar.jpg";
 import "./Works.scss";
-
-const works = [
-  {
-    id: 1,
-    title: "111",
-    desc: "aaaaaaa",
-    img: avatar,
-    btns: [{ txt: "详情", type: "detail" }, { txt: "源码", type: "source" }],
-    source: ""
-  },
-  {
-    id: 2,
-    title: "222",
-    desc: "bbbbbbb",
-    img: avatar,
-    btns: [{ txt: "详情", type: "detail" }, { txt: "源码", type: "source" }],
-    source: ""
-  }
-];
+import { works } from "models/work";
 
 export class Works extends React.Component {
   checkDetail(id: number) {

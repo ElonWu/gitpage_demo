@@ -1,45 +1,106 @@
 @import "styles/variables.scss";
 
 .header {
+  transition: all 0.2s linear;
   height: 8rem;
   background: $color-bg;
   border-bottom: 1px solid #dcdcdc;
 
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+  position: relative;
 
   padding: 1rem;
 
   .avatar {
-    width: 5rem;
-    height: 5rem;
+    width: 6rem;
+    height: 6rem;
+
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+
+    transition: all 0.2s linear;
     img {
+      transition: all 0.2s linear;
       border-radius: 8px;
       border: 2px solid #dcdcdc;
     }
   }
 
   .info {
+    transition: all 0.2s linear;
     height: 100%;
     padding: 1rem 0;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-    justify-content: space-between;
+
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
     h3 {
       font-size: 1.6rem;
       color: #fff;
+      transition: all 0.4s linear;
+      text-align: right;
+      margin-bottom: 2rem;
+      transition: all 0.2s linear;
     }
     .info-detail {
       display: flex;
       align-items: center;
       justify-content: flex-end;
+      transition: all 0.2s linear;
 
       li {
         font-size: 1rem;
         color: #ededed;
-        padding-left: 0.4rem;
+        padding: 0 0.4rem;
+        transition: all 0.4s linear;
+      }
+    }
+  }
+}
+
+.header.cover {
+  height: 100%;
+  .avatar {
+    width: 8rem;
+    height: 8rem;
+
+    top: 38.5%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+    img {
+      border-radius: 50%;
+      border: 4px solid #dcdcdc;
+    }
+  }
+
+  .info {
+    width: 80%;
+    height: 15rem;
+    padding: 4rem 0 2rem;
+
+    position: absolute;
+
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    background: #fff;
+    border-radius: 0.4rem;
+    h3 {
+      font-size: 1.8rem;
+      color: $color-bg;
+      text-align: center;
+    }
+    .info-detail {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      li {
+        font-size: 1rem;
+        color: $color-bg;
+        padding: 0 0.4rem;
       }
     }
   }

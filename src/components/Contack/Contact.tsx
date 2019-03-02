@@ -4,6 +4,33 @@ import { Icon } from "antd";
 interface State {
   showContack: boolean;
 }
+
+const contacts = [
+  {
+    key: "phone",
+    title: "手机",
+    icon: "phone",
+    source: "tel: 18529108894"
+  },
+  {
+    key: "mail",
+    title: "邮件",
+    icon: "mail",
+    source: "mailto:wrzmonkey2012@hotmail.com"
+  },
+  {
+    key: "github",
+    title: "Github",
+    icon: "github",
+    source: "https://github.com/ElonWu"
+  },
+  {
+    key: "jianshu",
+    title: "简书",
+    icon: "edit",
+    source: "https://www.jianshu.com/u/b1d920f9837d"
+  }
+];
 export class Contact extends React.Component<any, State> {
   constructor(props) {
     super(props);
@@ -16,18 +43,14 @@ export class Contact extends React.Component<any, State> {
     return (
       <div className="contact">
         <ul className="contacts">
-          <li key="phone" className="phone">
-            <a href="tel: 18529108894">
-              <Icon type="phone" />
-              电话
-            </a>
-          </li>
-          <li key="mail" className="mail">
-            <a href="mailto:wrzmonkey2012@hotmail.com">
-              <Icon type="mail" />
-              邮件
-            </a>
-          </li>
+          {contacts.map(({ key, title, icon, source }) => (
+            <li key={key} className={key}>
+              <a href={source} target="_blank">
+                <Icon type={icon} />
+                {title}
+              </a>
+            </li>
+          ))}
         </ul>
       </div>
     );

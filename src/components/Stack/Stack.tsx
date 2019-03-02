@@ -41,10 +41,8 @@ export class Stack extends React.Component<Props, State> {
             key={`stack-${title}`}
             onClick={() => this.showDetail(index)}
           >
-            <i>
-              <img src={icon} alt="" />
-            </i>
-            <p>{title}</p>
+            <img src={icon} alt="" />
+            <span>{title}</span>
           </li>
         ))}
       </ul>
@@ -55,13 +53,17 @@ export class Stack extends React.Component<Props, State> {
     const { showAll } = this.state;
     return (
       <div className="show-more-btn" onClick={this.toggle}>
-        {/* {showAll ? (
-          <Button shape="circle" icon="up" />
+        {showAll ? (
+          <Button size="small" icon="up">
+            收起
+          </Button>
         ) : (
-          <Button shape="circle" icon="down" />
-        )} */}
+          <Button size="small" icon="down">
+            更多
+          </Button>
+        )}
 
-        {showAll ? "收起" : "更多"}
+        {/* {showAll ? "收起" : "更多"} */}
       </div>
     );
   }

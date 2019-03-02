@@ -19,3 +19,9 @@ export {
 export {
   default as MailOutline
 } from "@ant-design/icons/lib/outline/MailOutline";
+export {
+  default as GithubOutline
+} from "@ant-design/icons/lib/outline/GithubOutline";
+export {
+  default as EditOutline
+} from "@ant-design/icons/lib/outline/EditOutline";

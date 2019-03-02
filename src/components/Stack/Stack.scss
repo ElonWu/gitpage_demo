@@ -36,8 +36,6 @@
       img {
         width: 4rem;
         height: 4rem;
-        // border: 2px solid #ededed;
-        // border-radius: 50%;
       }
       span,
       p {
@@ -47,7 +45,7 @@
         white-space: nowrap;
         text-overflow: ellipsis;
         text-align: center;
-        font-size: 1.2rem;
+        font-size: 1rem;
         color: #666;
       }
     }
@@ -55,11 +53,14 @@
 
   .show-more-btn {
     padding: 1rem;
+    margin: 0 1rem;
     text-align: center;
+    border-top: 1px solid #f1f1f1;
+    font-size: 1.1rem;
+    letter-spacing: 0.1rem;
 
-    span {
-      font-size: 1rem;
-      letter-spacing: 0.1rem;
+    button.ant-btn {
+      border: none;
     }
   }
 }

@@ -47,7 +47,6 @@ abstract class AbstractChart<P extends Props> extends React.Component<P> {
             show: false
           },
           axisLabel: {
-            formatter: "{value} %",
             color: "#c3c3c3",
             fontSize: "10px"
           },
@@ -70,6 +69,7 @@ abstract class AbstractChart<P extends Props> extends React.Component<P> {
             show: false
           },
           axisLabel: {
+            formatter: "{value} %",
             color: "#c3c3c3",
             fontSize: "10px"
           },

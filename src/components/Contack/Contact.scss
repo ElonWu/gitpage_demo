@@ -1,28 +1,31 @@
 .contact {
-  h4 {
+  padding: 1rem 1rem 0;
+  & > h4 {
     background: #fff;
     font-size: 1.6rem;
     padding: 0 1.2rem 1.2rem;
     padding: 1.2rem 0;
   }
-
   .contacts {
-    padding: 1rem 1rem 0;
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: flex-start;
+    flex-wrap: nowrap;
+    overflow-y: auto;
 
     li {
-      flex: 1;
-      text-align: center;
-      padding: 2rem 4rem;
       background: #fff;
       border-radius: 0.4rem;
       box-shadow: 1px 4px 8px 1px rgba(0, 0, 0, 0.06);
       font-size: 1.4rem;
+      margin-right: 1.2rem;
 
-      &:first-child {
-        margin-right: 2rem;
+      a {
+        width: 16rem;
+        display: inline-block;
+        text-align: center;
+        padding: 2rem 1rem;
+        white-space: nowrap;
       }
     }
 
@@ -41,6 +44,24 @@
       }
       &:active {
         background: #b9cdf5;
+      }
+    }
+
+    li.github {
+      a {
+        color: #132046;
+      }
+      &:active {
+        background: #97a0d0;
+      }
+    }
+
+    li.jianshu {
+      a {
+        color: #ff3985;
+      }
+      &:active {
+        background: #ffdce0;
       }
     }
   }

@@ -21,7 +21,7 @@ export const Stacks = [
     }
   },
   {
-    title: "Tyscript",
+    title: "TS",
     icon: IconTs,
     desc: "TyscriptTyscriptTyscriptTyscript",
     detail: {
@@ -45,7 +45,7 @@ export const Stacks = [
     }
   },
   {
-    title: "Node.js",
+    title: "Node",
     icon: IconNode,
     desc: "Node.jsNode.jsNode.jsNode.js",
     detail: {

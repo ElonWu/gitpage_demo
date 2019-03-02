@@ -48,9 +48,12 @@
         button:not(:first-child) {
           margin-left: 0.2rem;
         }
-        button > span {
-          font-size: 1rem;
-          line-height: 2rem;
+        button {
+          display: flex;
+          align-items: center;
+          span {
+            font-size: 1rem;
+          }
         }
       }
     }

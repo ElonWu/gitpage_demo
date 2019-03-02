@@ -1,16 +1,19 @@
 import * as React from "react";
-import { articles } from "models/article";
+import { articles, IArticle } from "models/article";
 import "./Articles.scss";
 export class Articles extends React.Component {
   render() {
     return (
       <div className="articles">
         <ul className="article-list">
-          {articles.map(({ title, desc, source }) => (
+          {articles.map(({ title, desc, source }: IArticle) => (
             <li className="article-item">
               <h3>{title}</h3>
               <p>{desc}</p>
-              <i className="check"> &gt; </i>
+              <a href={source} target="_blank">
+                阅读文章
+              </a>
+              <i className="line" />
             </li>
           ))}
         </ul>

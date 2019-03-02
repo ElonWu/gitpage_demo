@@ -46,29 +46,34 @@ module.exports = (env, args) => {
       path: PUBLIC_URL
     },
     // 打包时使用分离部分依赖包， 通过 cdn 访问
-    // externals: DEV
-    //   ? []
-    //   : [
-    //       "react",
-    //       "react-dom",
-    //       "react-router-dom",
-    //       "antd",
-    //       {
-    //         lodash: {
-    //           commonjs: "lodash",
-    //           amd: "lodash",
-    //           root: "_" // indicates global variable
-    //         }
-    //       }
-    //     ],
+    // externals: {
+    //   react: "React",
+    //   "react-dom": "ReactDom",
+    //   "react-router-dom": "Router",
+    //   antd: "antd",
+    //   echarts: "echarts",
+    //   lodash: "lodash"
+    // },
 
     // 代码分割
     optimization: {
       splitChunks: {
+        chunks: "all",
+        maxInitialRequests: Infinity,
+        minSize: 0,
         cacheGroups: {
           vendor: {
             test: /[\\/]node_modules[\\/]/,
-            name: "vendors",
+            name(module) {
+              // get the name. E.g. node_modules/packageName/not/this/part.js
+              // or node_modules/packageName
+              const packageName = module.context.match(
+                /[\\/]node_modules[\\/](.*?)([\\/]|$)/
+              )[1];
+
+              // npm package names are URL-safe, but some servers don't like @ symbols
+              return `npm.${packageName.replace("@", "")}`;
+            },
             chunks: "all",
             enforce: true
           }
@@ -140,16 +145,16 @@ module.exports = (env, args) => {
         // 解决无法按需加载图标的临时方案
         "@ant-design/icons/lib/dist$": path.resolve(
           __dirname,
-          "./src/components/icons.js"
+          "./src/components/Icons.js"
         )
       }
     },
     plugins: [
       new HtmlWebPackPlugin({
         hash: true,
-        template: "public/index.html",
-        filename: "index.html",
-        PUBLIC_URL
+        template: path.resolve(__dirname, "public", "index.html"),
+        filename: "index.html"
+        // PUBLIC_URL
       }),
 
       new MiniCssExtractPlugin({

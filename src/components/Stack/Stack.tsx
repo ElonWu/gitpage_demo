@@ -1,8 +1,9 @@
 import * as React from "react";
 import "./Stack.scss";
-import { Icon, Button } from "antd";
+import { Icon, Button, Tabs } from "antd";
 import { IStack, Stacks } from "models/stack";
 import { StackDetailModal } from "components/StackDetailModal/StackDetailModal";
+import { StackChart } from "components/StackChart/StackChart";
 
 interface Props {}
 interface State {
@@ -71,14 +72,21 @@ export class Stack extends React.Component<Props, State> {
     const { current } = this.state;
     return (
       <div className="stack">
-        {this.renderStacks}
-        {this.renderBtn}
-        {current && (
-          <StackDetailModal
-            stack={current}
-            onClose={() => this.setState({ current: undefined })}
-          />
-        )}
+        <Tabs defaultActiveKey="list">
+          <Tabs.TabPane key="list" tab="列表">
+            {this.renderStacks}
+            {this.renderBtn}
+            {current && (
+              <StackDetailModal
+                stack={current}
+                onClose={() => this.setState({ current: undefined })}
+              />
+            )}
+          </Tabs.TabPane>
+          <Tabs.TabPane key="chart" tab="图表">
+            <StackChart chartId="stack-chart" />
+          </Tabs.TabPane>
+        </Tabs>
       </div>
     );
   }

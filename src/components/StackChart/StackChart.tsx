@@ -3,7 +3,7 @@ import echarts from "echarts";
 
 interface Props {
   chartId: string;
-  style: React.CSSProperties;
+  style?: React.CSSProperties;
 }
 
 abstract class AbstractChart<P extends Props> extends React.Component<P> {
@@ -21,9 +21,6 @@ abstract class AbstractChart<P extends Props> extends React.Component<P> {
     const myChart = echarts.init(document.getElementById(chartId));
 
     myChart.setOption({
-      title: {
-        // text: "技术栈"
-      },
       color: ["#3398DB"],
       tooltip: {
         trigger: "axis",
@@ -36,6 +33,7 @@ abstract class AbstractChart<P extends Props> extends React.Component<P> {
         left: "3%",
         right: "4%",
         bottom: "3%",
+        top: "6%",
         containLabel: true
       },
       xAxis: [
@@ -43,20 +41,57 @@ abstract class AbstractChart<P extends Props> extends React.Component<P> {
           type: "category",
           data: ["TS", "Antd", "Sass", "React", "Node"],
           axisTick: {
-            alignWithLabel: true
+            show: false
+          },
+          splitLine: {
+            show: false
+          },
+          axisLabel: {
+            formatter: "{value} %",
+            color: "#c3c3c3",
+            fontSize: "10px"
+          },
+          axisLine: {
+            lineStyle: {
+              clor: "#c3c3c3",
+              type: "dashed",
+              opacity: 0.6
+            }
           }
         }
       ],
       yAxis: [
         {
-          type: "value"
+          type: "value",
+          axisTick: {
+            show: false
+          },
+          splitLine: {
+            show: false
+          },
+          axisLabel: {
+            color: "#c3c3c3",
+            fontSize: "10px"
+          },
+          axisLine: {
+            lineStyle: {
+              clor: "#c3c3c3",
+              type: "dashed",
+              opacity: 0.6
+            }
+          }
         }
       ],
       series: [
         {
           name: "熟悉程度",
           type: "bar",
-          data: [65, 72, 86, 70, 80]
+          // barGap: "100%",
+          barCategoryGap: "50%",
+          data: [65, 72, 86, 70, 80],
+          itemStyle: {
+            barBorderRadius: [4, 4, 0, 0]
+          }
         }
       ]
     });

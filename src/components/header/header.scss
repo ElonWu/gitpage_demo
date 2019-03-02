@@ -2,21 +2,23 @@
 
 .header {
   transition: all 0.2s linear;
-  height: 8rem;
+  height: 9.2rem;
   background: $color-bg;
+
+  // background-image: linear-gradient(125deg, #59c9c9 0%, #4f3e63 100%);
   border-bottom: 1px solid #dcdcdc;
 
   position: relative;
 
-  padding: 1rem;
+  padding: 1.6rem;
 
   .avatar {
     width: 6rem;
     height: 6rem;
 
     position: absolute;
-    top: 1rem;
-    left: 1rem;
+    top: 1.6rem;
+    left: 1.6rem;
 
     transition: all 0.2s linear;
     img {
@@ -77,19 +79,18 @@
   .info {
     width: 80%;
     height: 15rem;
-    padding: 4rem 0 2rem;
-
+    padding: 6rem 0 2rem;
+    background: #fff;
+    // background-image: linear-gradient(180deg, #fdfcfb 0%, #e2d1c3 100%);
     position: absolute;
 
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-
-    background: #fff;
     border-radius: 0.4rem;
     h3 {
       font-size: 1.8rem;
-      color: $color-bg;
+      color: #444;
       text-align: center;
     }
     .info-detail {
@@ -99,7 +100,7 @@
 
       li {
         font-size: 1rem;
-        color: $color-bg;
+        color: #444;
         padding: 0 0.4rem;
       }
     }

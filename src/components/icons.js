@@ -13,3 +13,9 @@ export {
 export {
   default as CodeOutline
 } from "@ant-design/icons/lib/outline/CodeOutline";
+export {
+  default as PhoneOutline
+} from "@ant-design/icons/lib/outline/PhoneOutline";
+export {
+  default as MailOutline
+} from "@ant-design/icons/lib/outline/MailOutline";

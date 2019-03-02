@@ -1,12 +1,23 @@
 .stack {
   background: #fff;
+  margin: 1rem;
+  border-radius: 0.4rem;
+  box-shadow: 1px 4px 8px 1px rgba(0, 0, 0, 0.06);
   .ant-tabs-nav {
-    width: 100%;
+    // width: 100%;
     .ant-tabs-tab {
-      width: 50%;
+      // width: 50%;
       margin: 0;
       text-align: center;
+      border-bottom: 1px solid #f8f8f8;
     }
+  }
+  .ant-tabs-bar {
+    border-right: 1px solid #f8f8f8;
+  }
+  .ant-tabs-content {
+    padding-left: 0;
+    border-left: 1px solid #f8f8f8;
   }
   .stack-list {
     display: flex;

@@ -55,15 +55,13 @@ export class Stack extends React.Component<Props, State> {
     const { showAll } = this.state;
     return (
       <div className="show-more-btn" onClick={this.toggle}>
-        {showAll ? (
-          <Button shape="circle" icon="up">
-            {/* 收起 */}
-          </Button>
+        {/* {showAll ? (
+          <Button shape="circle" icon="up" />
         ) : (
-          <Button shape="circle" icon="down">
-            {/* 更多 */}
-          </Button>
-        )}
+          <Button shape="circle" icon="down" />
+        )} */}
+
+        {showAll ? "收起" : "更多"}
       </div>
     );
   }
@@ -72,7 +70,7 @@ export class Stack extends React.Component<Props, State> {
     const { current } = this.state;
     return (
       <div className="stack">
-        <Tabs defaultActiveKey="list">
+        <Tabs defaultActiveKey="list" tabPosition="left">
           <Tabs.TabPane key="list" tab="列表">
             {this.renderStacks}
             {this.renderBtn}

@@ -20,7 +20,7 @@ export class Header extends React.Component<Props, State> {
     return (
       <div
         className={`header ${cover && "cover"}`}
-        onClick={() => this.setState({ cover: false })}
+        onClick={() => this.setState({ cover: !cover })}
       >
         <div className="avatar">
           <img src={avatar} alt="" width="100%" />

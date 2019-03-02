@@ -1,9 +1,47 @@
 .contact {
   h4 {
-    font-size: 1.4rem;
-    text-align: center;
-    margin: 0 1.2rem 1.2rem;
+    background: #fff;
+    font-size: 1.6rem;
+    padding: 0 1.2rem 1.2rem;
     padding: 1.2rem 0;
-    border-bottom: 1px solid #ededed;
+  }
+
+  .contacts {
+    padding: 1rem 1rem 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    li {
+      flex: 1;
+      text-align: center;
+      padding: 2rem 4rem;
+      background: #fff;
+      border-radius: 0.4rem;
+      box-shadow: 1px 4px 8px 1px rgba(0, 0, 0, 0.06);
+      font-size: 1.4rem;
+
+      &:first-child {
+        margin-right: 2rem;
+      }
+    }
+
+    li.phone {
+      a {
+        color: #5ab25a;
+      }
+      &:active {
+        background: #e1ebe6;
+      }
+    }
+
+    li.mail {
+      a {
+        color: #5876d2;
+      }
+      &:active {
+        background: #b9cdf5;
+      }
+    }
   }
 }

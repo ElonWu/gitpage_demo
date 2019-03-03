@@ -47,12 +47,13 @@ module.exports = (env, args) => {
     },
     // 打包时使用分离部分依赖包， 通过 cdn 访问
     externals: {
-      // react: "React",
-      // "react-dom": "ReactDOM",
-      // "react-router-dom": "Router",
+      React: "React",
+      ReactDOM: "ReactDOM",
+      // ReactRouterDom: "ReactRouterDom",
       antd: "antd",
       echarts: "echarts",
-      lodash: "lodash"
+      lodash: "lodash",
+      moment: "moment"
     },
 
     // 代码分割

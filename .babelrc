@@ -6,6 +6,7 @@
   ],
   // 通过 babel-plugin-import 插件完成按需加载
   "plugins": [
+    "@babel/plugin-syntax-dynamic-import",
     [
       "import",
       {

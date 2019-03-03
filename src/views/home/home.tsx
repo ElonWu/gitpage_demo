@@ -1,15 +1,31 @@
 import * as React from "react";
-import { Header } from "components/Header/Header";
-import { Content } from "components/Content/Content";
 import "./home.scss";
-// import { Navbar } from "components/Navbar/Navbar";
 
-export class Home extends React.Component {
+import { loaderWrapper } from "utils/loadable";
+
+const Header: any = loaderWrapper(() => import("components/Header/Header"));
+const Content = loaderWrapper(() => import("components/Content/Content"));
+
+interface Props {}
+interface State {
+  cover: boolean;
+}
+export default class Home extends React.Component<Props, State> {
+  constructor(props: Props) {
+    super(props);
+    this.state = {
+      cover: true
+    };
+  }
   render() {
+    const { cover } = this.state;
     return (
       <div className="home">
-        <Header />
-        <Content />
+        <Header
+          cover={cover}
+          toggleCover={() => this.setState({ cover: !cover })}
+        />
+        {!cover && <Content />}
       </div>
     );
   }

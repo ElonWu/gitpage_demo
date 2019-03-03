@@ -3,25 +3,16 @@ import "./Header.scss";
 import avatar from "assets/img/avatar.jpg";
 import { Icon } from "antd";
 
-interface Props {}
-interface State {
+interface Props {
   cover: boolean;
+  toggleCover: () => void;
 }
-export class Header extends React.Component<Props, State> {
-  constructor(props: Props) {
-    super(props);
-    this.state = {
-      cover: true
-    };
-  }
-
+interface State {}
+export default class Header extends React.Component<Props, State> {
   render() {
-    const { cover } = this.state;
+    const { cover, toggleCover } = this.props;
     return (
-      <div
-        className={`header ${cover && "cover"}`}
-        onClick={() => this.setState({ cover: !cover })}
-      >
+      <div className={`header ${cover && "cover"}`} onClick={toggleCover}>
         <div className="header-container">
           <div className="avatar">
             <img src={avatar} alt="" width="100%" />

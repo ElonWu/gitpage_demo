@@ -1,9 +1,11 @@
 import * as React from "react";
 import "./Content.scss";
-import { Stack } from "components/Stack/Stack";
-import { Works } from "components/Works/Works";
-import { Articles } from "components/Articles/Articles";
-import { Contact } from "components/Contack/Contact";
+import { loaderWrapper } from "utils/loadable";
+
+const Stack = loaderWrapper(() => import("components/Stack/Stack"));
+const Works = loaderWrapper(() => import("components/Works/Works"));
+const Articles = loaderWrapper(() => import("components/Articles/Articles"));
+const Contact = loaderWrapper(() => import("components/Contact/Contact"));
 
 const Sections = [
   { title: "联系方式", key: "contact", component: <Contact /> },
@@ -12,7 +14,7 @@ const Sections = [
   { title: "最近文章", key: "recent-article", component: <Articles /> }
 ];
 
-export class Content extends React.Component {
+export default class Content extends React.Component {
   render() {
     return (
       <div className="content">

@@ -31,7 +31,7 @@ const contacts = [
     source: "https://www.jianshu.com/u/b1d920f9837d"
   }
 ];
-export class Contact extends React.Component<any, State> {
+export default class Contact extends React.Component<any, State> {
   constructor(props) {
     super(props);
     this.state = {

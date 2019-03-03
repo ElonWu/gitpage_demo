@@ -46,14 +46,14 @@ module.exports = (env, args) => {
       path: PUBLIC_URL
     },
     // 打包时使用分离部分依赖包， 通过 cdn 访问
-    // externals: {
-    //   react: "React",
-    //   "react-dom": "ReactDom",
-    //   "react-router-dom": "Router",
-    //   antd: "antd",
-    //   echarts: "echarts",
-    //   lodash: "lodash"
-    // },
+    externals: {
+      // react: "React",
+      // "react-dom": "ReactDOM",
+      // "react-router-dom": "Router",
+      antd: "antd",
+      echarts: "echarts",
+      lodash: "lodash"
+    },
 
     // 代码分割
     optimization: {
@@ -142,6 +142,7 @@ module.exports = (env, args) => {
         api: srcPath(["src", "api"]),
         models: srcPath(["src", "models"]),
         assets: srcPath(["src", "assets"]),
+        utils: srcPath(["src", "utils"]),
         // 解决无法按需加载图标的临时方案
         "@ant-design/icons/lib/dist$": path.resolve(
           __dirname,

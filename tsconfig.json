@@ -10,7 +10,8 @@
       "routes/*": ["src/routes/*"],
       "api/*": ["src/api/*"],
       "models/*": ["src/models/*"],
-      "assets/*": ["src/assets/*"]
+      "assets/*": ["src/assets/*"],
+      "utils/*": ["src/utils/*"]
     },
     "outDir": "/dist",
     "module": "commonjs", // 使用 babel 来解析 ts 时只能几首 commonjs

@@ -1,6 +1,6 @@
 import * as React from "react";
 import "./Stack.scss";
-import { Icon, Button, Tabs } from "antd";
+import { Button, Tabs } from "antd";
 import { IStack, Stacks } from "models/stack";
 import { StackDetailModal } from "components/StackDetailModal/StackDetailModal";
 import { StackChart } from "components/StackChart/StackChart";
@@ -10,7 +10,7 @@ interface State {
   showAll: Boolean;
   current: IStack | undefined;
 }
-export class Stack extends React.Component<Props, State> {
+export default class Stack extends React.Component<Props, State> {
   constructor(props) {
     super(props);
     this.state = {

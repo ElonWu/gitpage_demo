@@ -3,7 +3,7 @@ import { Button } from "antd";
 import "./Works.scss";
 import { works } from "models/work";
 
-export class Works extends React.Component {
+export default class Works extends React.Component {
   checkDetail(id: number) {
     console.log();
   }

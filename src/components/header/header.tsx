@@ -18,7 +18,7 @@ export default class Header extends React.Component<Props, State> {
             <img src={avatar} alt="" width="100%" />
           </div>
           <div className="info">
-            <h3> 吴渊 (Elon Wu) </h3>
+            <h3>吴渊</h3>
             <ul className="info-detail">
               <li>
                 <Icon type="calendar" />
@@ -30,7 +30,7 @@ export default class Header extends React.Component<Props, State> {
               </li>
               <li>
                 <Icon type="dashboard" />
-                <span>3年</span>
+                <span>3年经验</span>
               </li>
             </ul>
           </div>

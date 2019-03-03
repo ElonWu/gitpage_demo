@@ -5,22 +5,19 @@ interface Props {
   chartId: string;
   style?: React.CSSProperties;
 }
-
-abstract class AbstractChart<P extends Props> extends React.Component<P> {
-  constructor(P) {
-    super(P);
-    this.state = {};
-  }
-  componentDidMount() {
-    this.chartInit();
-  }
-
-  chartInit() {
+interface State {
+  showBarChart: boolean;
+}
+abstract class AbstractChart<
+  P extends Props,
+  S extends State
+> extends React.Component<P, S> {
+  chartInit(opt?: any) {
     const { chartId } = this.props;
     console.log(chartId);
     const myChart = echarts.init(document.getElementById(chartId));
 
-    myChart.setOption({
+    const DEFAULT_CONFIG = {
       color: ["#3398DB"],
       tooltip: {
         trigger: "axis",
@@ -81,20 +78,9 @@ abstract class AbstractChart<P extends Props> extends React.Component<P> {
             }
           }
         }
-      ],
-      series: [
-        {
-          name: "熟悉程度",
-          type: "bar",
-          // barGap: "100%",
-          barCategoryGap: "50%",
-          data: [65, 72, 86, 70, 80],
-          itemStyle: {
-            barBorderRadius: [4, 4, 0, 0]
-          }
-        }
       ]
-    });
+    };
+    myChart.setOption(Object.assign({}, DEFAULT_CONFIG, opt || {}));
   }
 
   render() {
@@ -109,4 +95,33 @@ abstract class AbstractChart<P extends Props> extends React.Component<P> {
   }
 }
 
-export class StackChart extends AbstractChart<Props> {}
+export class StackChart extends AbstractChart<Props, State> {
+  constructor(props: Props) {
+    super(props);
+    this.state = {
+      showBarChart: true
+    };
+  }
+
+  componentDidMount() {
+    this.shoWBarChart();
+  }
+
+  shoWBarChart() {
+    // 默认显示柱状图
+    this.chartInit({
+      series: [
+        {
+          name: "常用程度",
+          type: "bar",
+          // barGap: "100%",
+          barCategoryGap: "50%",
+          data: [65, 72, 86, 70, 80],
+          itemStyle: {
+            barBorderRadius: [4, 4, 0, 0]
+          }
+        }
+      ]
+    });
+  }
+}

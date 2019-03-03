@@ -129,7 +129,32 @@ module.exports = (env, args) => {
         },
         {
           test: /\.(jpg|png|woff|woff2|eot|ttf|svg|ico)$/,
-          loader: "file-loader"
+          use: [
+            {
+              loader: "file-loader",
+              options: {
+                outputPath: (url, resourcePath, context) => {
+                  if (/font/.test(context)) {
+                    return `font/${url}`;
+                  }
+
+                  if (/img/.test(context)) {
+                    return `img/${url}`;
+                  }
+
+                  if (/icon/.test(context)) {
+                    return `icon/${url}`;
+                  }
+
+                  if (/gif/.test(context)) {
+                    return `gif/${url}`;
+                  }
+
+                  return `assets/${url}`;
+                }
+              }
+            }
+          ]
         }
       ]
     },

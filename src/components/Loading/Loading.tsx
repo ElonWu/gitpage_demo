@@ -1,3 +1,15 @@
 import * as React from "react";
+import { Spin } from "antd";
 
-export const Loading = () => <h3>loading...</h3>;
+export const Loading = () => (
+  <div
+    className="loading"
+    style={{
+      padding: "1rem",
+      background: "#dcd6a33b",
+      textAlign: "center"
+    }}
+  >
+    <Spin />
+  </div>
+);

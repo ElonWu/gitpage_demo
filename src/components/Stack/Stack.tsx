@@ -32,7 +32,7 @@ export default class Stack extends React.Component<Props, State> {
 
   get renderStacks() {
     const { showAll } = this.state;
-    const list = showAll ? Stacks : Stacks.slice(0, 4);
+    const list = showAll ? Stacks : Stacks.slice(0, 6);
     return (
       <ul className="stack-list">
         {list.map(({ title, icon, desc, detail }: IStack, index: number) => (
@@ -72,8 +72,8 @@ export default class Stack extends React.Component<Props, State> {
     const { current } = this.state;
     return (
       <div className="stack">
-        <Tabs defaultActiveKey="list" tabPosition="left">
-          <Tabs.TabPane key="list" tab="列表">
+        <Tabs defaultActiveKey="normal" tabPosition="left">
+          <Tabs.TabPane key="normal" tab="常用">
             {this.renderStacks}
             {this.renderBtn}
             {current && (
@@ -83,7 +83,7 @@ export default class Stack extends React.Component<Props, State> {
               />
             )}
           </Tabs.TabPane>
-          <Tabs.TabPane key="chart" tab="图表">
+          <Tabs.TabPane key="chart" tab="可视化">
             <StackChart chartId="stack-chart" />
           </Tabs.TabPane>
         </Tabs>

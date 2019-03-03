@@ -9,9 +9,9 @@ const Contact = loaderWrapper(() => import("components/Contact/Contact"));
 
 const Sections = [
   { title: "联系方式", key: "contact", component: <Contact /> },
-  { title: "技术栈", key: "stack", component: <Stack /> },
+  { title: "技术能力", key: "stack", component: <Stack /> },
   { title: "最近项目", key: "recent-work", component: <Works /> },
-  { title: "最近文章", key: "recent-article", component: <Articles /> }
+  { title: "技术分享", key: "recent-article", component: <Articles /> }
 ];
 
 export default class Content extends React.Component {

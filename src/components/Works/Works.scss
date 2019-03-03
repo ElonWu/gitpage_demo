@@ -15,10 +15,14 @@
       margin-bottom: 1rem;
       background: #fff;
 
-      img {
+      .img {
         width: 6rem;
+        min-width: 6rem;
         height: 6rem;
         margin-right: 1rem;
+        background-repeat: no-repeat;
+        background-position: center center;
+        background-size: contain;
       }
 
       .info {
@@ -51,7 +55,7 @@
         button {
           display: flex;
           align-items: center;
-          span {
+          a {
             font-size: 1rem;
           }
         }

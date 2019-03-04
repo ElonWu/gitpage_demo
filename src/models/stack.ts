@@ -5,6 +5,7 @@ import IconTs from "assets/icon/icon_ts.png";
 import IconAntd from "assets/icon/icon_antd.png";
 import IconExpress from "assets/icon/icon_express.png";
 import IconWebpack from "assets/icon/icon_webpack.png";
+import IconGraphQL from "assets/icon/icon_graphql.png";
 
 export interface IStack {
   title: string;
@@ -65,6 +66,14 @@ export const Stacks = [
   {
     title: "TypeScript",
     icon: IconTs,
+    desc: "TyscriptTyscriptTyscriptTyscript",
+    detail: {
+      longdesc: ""
+    }
+  },
+  {
+    title: "GraphQL",
+    icon: IconGraphQL,
     desc: "TyscriptTyscriptTyscriptTyscript",
     detail: {
       longdesc: ""

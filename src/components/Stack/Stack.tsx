@@ -3,7 +3,7 @@ import "./Stack.scss";
 import { Button, Tabs } from "antd";
 import { IStack, Stacks } from "models/stack";
 import { StackDetailModal } from "components/StackDetailModal/StackDetailModal";
-import { StackChart } from "components/StackChart/StackChart";
+import { BarChart, LineChart, PieChart } from "components/Charts/Charts";
 
 interface Props {}
 interface State {
@@ -27,7 +27,7 @@ export default class Stack extends React.Component<Props, State> {
   }
 
   showDetail(index: number) {
-    this.setState({ current: Stacks[index] });
+    // this.setState({ current: Stacks[index] });
   }
 
   get renderStacks() {
@@ -73,7 +73,7 @@ export default class Stack extends React.Component<Props, State> {
     return (
       <div className="stack">
         <Tabs defaultActiveKey="normal" tabPosition="left">
-          <Tabs.TabPane key="normal" tab="常用">
+          <Tabs.TabPane key="normal" tab="技术栈">
             {this.renderStacks}
             {this.renderBtn}
             {current && (
@@ -84,7 +84,9 @@ export default class Stack extends React.Component<Props, State> {
             )}
           </Tabs.TabPane>
           <Tabs.TabPane key="chart" tab="可视化">
-            <StackChart chartId="stack-chart" />
+            <BarChart chartId="stack-bar-chart" />
+            <LineChart chartId="stack-line-chart" />
+            <PieChart chartId="stack-pie-chart" />
           </Tabs.TabPane>
         </Tabs>
       </div>

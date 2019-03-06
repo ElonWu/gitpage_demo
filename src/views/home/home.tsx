@@ -2,7 +2,6 @@ import * as React from "react";
 import "./home.scss";
 
 import { loaderWrapper } from "utils/loadable";
-
 const Header: any = loaderWrapper(() => import("components/Header/Header"));
 const Content = loaderWrapper(() => import("components/Content/Content"));
 
@@ -17,6 +16,7 @@ export default class Home extends React.Component<Props, State> {
       cover: true
     };
   }
+
   render() {
     const { cover } = this.state;
     return (

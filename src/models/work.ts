@@ -32,7 +32,7 @@ export const works: Array<IWork> = [
     preview: "https://elonwu.github.io/svg-animation"
   },
   {
-    id: 2,
+    id: 3,
     title: "GraphQL",
     desc: "Node + Express + GraphQL + mongoDB 搭建的服务器端",
     img: grapgQl,

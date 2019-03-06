@@ -55,7 +55,7 @@ export class CharacterCard extends React.Component<Props> {
         </div>
         <ul className="info">
           <li>
-            <h4>Gnder</h4>
+            <h4>Gender</h4>
             <p>{gender}</p>
           </li>
           <li>

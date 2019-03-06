@@ -10,11 +10,11 @@ const Articles = loaderWrapper(() => import("components/Articles/Articles"));
 const Contact = loaderWrapper(() => import("components/Contact/Contact"));
 
 const Sections = [
-  { title: "彩蛋", key: "rick-morty", component: <RickMorty /> },
   { title: "联系方式", key: "contact", component: <Contact /> },
   { title: "技术能力", key: "stack", component: <Stack /> },
   { title: "最近项目", key: "recent-work", component: <Works /> },
-  { title: "技术分享", key: "recent-article", component: <Articles /> }
+  { title: "技术分享", key: "recent-article", component: <Articles /> },
+  { title: "Rick&Morty character", key: "rick-morty", component: <RickMorty /> }
 ];
 
 export default class Content extends React.Component {

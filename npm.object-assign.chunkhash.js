@@ -1,4 +1,4 @@
-(window.webpackJsonp=window.webpackJsonp||[]).push([[22],{44:function(r,t,e){"use strict";
+(window.webpackJsonp=window.webpackJsonp||[]).push([[26],{67:function(r,t,e){"use strict";
 /*
 object-assign
 (c) Sindre Sorhus
